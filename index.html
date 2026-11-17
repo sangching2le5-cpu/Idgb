@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerunds and Infinitives – 100 Interactive Exercises (B1–B2)</title>
+<style>
+:root {
+--primary: #A9CFE8;
+--primary-dark: #8AB8D6;
+--secondary: #DCEFFA;
+--bg-soft: #F8FAFC;
+--text-main: #26364A;
+--text-muted: #64748B;
+--correct: #10B981;
+--correct-bg: #ECFDF5;
+--incorrect: #EF4444;
+--incorrect-bg: #FEF2F2;
+--flagged: #8B5CF6;
+--white: #FFFFFF;
+--border: #E2E8F0;
+--shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+--radius: 12px;
+}
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+body {
+background-color: var(--bg-soft);
+color: var(--text-main);
+line-height: 1.6;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+header {
+background-color: var(--white);
+border-bottom: 1px solid var(--border);
+padding: 1rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.header-title {
+font-size: 1.25rem;
+font-weight: 700;
+color: var(--text-main);
+display: flex;
+align-items: center;
+gap: 0.5r em;
+}
+.header-badge {
+background-color: var(--secondary);
+color: var(--text-main);
+font-size: 0.75rem;
+padding: 0.25rem 0.75rem;
+border-radius: 99px;
+font-weight: 600;
+}
+main {
+flex: 1;
+max-width: 1000px;
+width: 100%;
+margin: 0 auto;
+padding: 2rem 1rem;
+}
+/* Views */
+.view {
+display: none;
+}
+.view.active {
+display: block;
+}
+/* Dashboard Styles */
+.dashboard-hero {
+background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+border-radius: var(--radius);
+padding: 2.5rem;
+text-align: center;
+margin-bottom: 2rem;
+box-shadow: var(--shadow);
+}
+.dashboard-hero h1 {
+font-size: 2rem;
+margin-bottom: 0.5rem;
+color: var(--text-main);
+}
+.dashboard-hero p {
+color: var(--text-main);
+opacity: 0.9;
+font-size: 1.1rem;
+margin-bottom: 1.5rem;
+}
+.stats-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1rem;
+margin-bottom: 2rem;
+}
+.stat-card {
+background: var(--white);
+padding: 1.5rem;
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+border: 1px solid var(--border);
+text-align: center;
+}
+.stat-card h3 {
+font-size: 2rem;
+color: var(--text-main);
+margin-bottom: 0.25rem;
+}
+.stat-card p {
+color: var(--text-muted);
+font-size: 0.9rem;
+font-weight: 500;
+}
+.action-buttons {
+display: flex;
+gap: 1rem;
+justify-content: center;
+flex-wrap: wrap;
+margin-bottom: 2rem;
+}
+.btn {
+background-color: var(--primary);
+color: var(--text-main);
+border: none;
+padding: 0.85rem 1.75rem;
+font-size: 1rem;
+font-weight: 600;
+border-radius: var(--radius);
+cursor: pointer;
+transition: all 0.2s ease;
+box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+}
+.btn:hover {
+background-color: var(--primary-dark);
+transform: translateY(-1px);
+}
+.btn-secondary {
+background-color: var(--white);
+border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+background-color: var(--bg-soft);
+}
+.btn-danger {
+background-color: #FEE2E2;
+color: #991B1B;
+}
+.btn-danger:hover {
+background-color: #FECACA;
+}
+/* Grammar Overview Card */
+.grammar-overview {
+background: var(--white);
+padding: 2rem;
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+border: 1px solid var(--border);
+margin-top: 2rem;
+}
+.grammar-overview h2 {
+margin-bottom: 1rem;
+font-size: 1.25rem;
+}
+.grammar-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5rem;
+margin-top: 1rem;
+}
+.grammar-item {
+background: var(--bg-soft);
+padding: 1rem;
+border-radius: 8px;
+border-left: 4px solid var(--primary);
+}
+.grammar-item h4 {
+margin-bottom: 0.35rem;
+font-size: 1rem;
+}
+.grammar-item p {
+font-size: 0.875rem;
+color: var(--text-muted);
+}
+/* Quiz Interface */
+.quiz-container {
+background: var(--white);
+border-radius: var(--radius);
+padding: 2rem;
+box-shadow: var(--shadow);
+border: 1px solid var(--border);
+}
+.quiz-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 1.5rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+}
+.quiz-progress-text {
+font-weight: 600;
+color: var(--text-muted);
+}
+.quiz-actions-top {
+display: flex;
+gap: 0.75rem;
+align-items: center;
+}
+.flag-btn {
+background: none;
+border: 1px solid var(--border);
+padding: 0.4rem 0.8rem;
+border-radius: 6px;
+cursor: pointer;
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--text-muted);
+display: flex;
+align-items: center;
+gap: 0.3rem;
+}
+.flag-btn.flagged {
+background-color: #F3E8FF;
+color: var(--flagged);
+border-color: #D8B4FE;
+}
+.keyboard-hint {
+background-color: var(--bg-soft);
+padding: 0.5rem 1rem;
+border-radius: 6px;
+font-size: 0.8rem;
+color: var(--text-muted);
+margin-bottom: 1.5rem;
+border: 1px dashed var(--border);
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 0.5rem;
+}
+.question-box h2 {
+font-size: 1.25rem;
+margin-bottom: 1.5rem;
+color: var(--text-main);
+}
+.options-list {
+display: flex;
+flex-direction: column;
+gap: 0.75rem;
+margin-bottom: 2rem;
+}
+.option-card {
+display: flex;
+align-items: center;
+padding: 1rem 1.25rem;
+border: 2px solid var(--border);
+border-radius: var(--radius);
+cursor: pointer;
+transition: all 0.15s ease;
+background: var(--white);
+font-size: 1rem;
+}
+.option-card:hover {
+border-color: var(--primary-dark);
+background-color: var(--bg-soft);
+}
+.option-card.selected {
+border-color: var(--primary-dark);
+background-color: var(--secondary);
+font-weight: 500;
+}
+.option-card.correct {
+border-color: var(--correct);
+background-color: var(--correct-bg);
+color: #065F46;
+}
+.option-card.incorrect {
+border-color: var(--incorrect);
+background-color: var(--incorrect-bg);
+color: #991B1B;
+}
+.option-key {
+display: inline-flex;
+justify-content: center;
+align-items: center;
+width: 28px;
+height: 28px;
+background: var(--bg-soft);
+border: 1px solid var(--border);
+border-radius: 6px;
+font-weight: 600;
+font-size: 0.875rem;
+margin-right: 1rem;
+flex-shrink: 0;
+}
+.option-card.selected .option-key {
+background: var(--white);
+border-color: var(--primary-dark);
+}
+/* Explanation Box */
+.explanation-box {
+background: var(--bg-soft);
+border-left: 4px solid var(--primary);
+padding: 1.25rem;
+border-radius: 0 var(--radius) var(--radius) 0;
+margin-bottom: 1.5rem;
+display: none;
+}
+.explanation-box.show {
+display: block;
+}
+.explanation-box h4 {
+margin-bottom: 0.5rem;
+color: var(--text-main);
+}
+.explanation-box p {
+font-size: 0.925rem;
+margin-bottom: 0.5rem;
+}
+.explanation-box .vi-trans {
+color: var(--text-muted);
+font-style: italic;
+}
+/* Quiz Footer Navigation */
+.quiz-footer {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-top: 1rem;
+border-top: 1px solid var(--border);
+}
+/* Question Grid / Navigator Drawer */
+.navigator-container {
+margin-top: 2rem;
+background: var(--white);
+padding: 1.5rem;
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+border: 1px solid var(--border);
+}
+.navigator-container h3 {
+font-size: 1rem;
+margin-bottom: 1rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.nav-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+gap: 6px;
+max-height: 200px;
+overflow-y: auto;
+padding: 4px;
+}
+.nav-cell {
+width: 36px;
+height: 36px;
+display: flex;
+justify-content: center;
+align-items: center;
+border: 1px solid var(--border);
+border-radius: 6px;
+font-size: 0.8rem;
+font-weight: 600;
+cursor: pointer;
+background: var(--white);
+transition: all 0.1s;
+}
+.nav-cell:hover {
+border-color: var(--primary-dark);
+}
+.nav-cell.current {
+border-color: var(--text-main);
+background-color: var(--text-main);
+color: var(--white);
+}
+.nav-cell.answered {
+background-color: var(--secondary);
+border-color: var(--primary);
+color: var(--text-main);
+}
+.nav-cell.correct {
+background-color: var(--correct-bg);
+border-color: var(--correct);
+color: #065F46;
+}
+.nav-cell.incorrect {
+background-color: var(--incorrect-bg);
+border-color: var(--incorrect);
+color: #991B1B;
+}
+.nav-cell.flagged {
+position: relative;
+}
+.nav-cell.flagged::after {
+content: '';
+position: absolute;
+top: 2px;
+right: 2px;
+width: 6px;
+height: 6px;
+background-color: var(--flagged);
+border-radius: 50%;
+}
+/* Results View */
+.results-container {
+background: var(--white);
+padding: 2.5rem;
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+border: 1px solid var(--border);
+text-align: center;
+}
+.results-score-circle {
+width: 140px;
+height: 140px;
+border-radius: 50%;
+background: var(--secondary);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin: 0 auto 1.5rem auto;
+border: 4px solid var(--primary);
+}
+.results-score-circle h2 {
+font-size: 2.5rem;
+color: var(--text-main);
+}
+.results-score-circle span {
+font-size: 0.85rem;
+color: var(--text-muted);
+text-transform: uppercase;
+font-weight: 600;
+}
+.performance-badge {
+display: inline-block;
+padding: 0.5rem 1.25rem;
+border-radius: 99px;
+font-weight: 700;
+font-size: 1.1rem;
+margin-bottom: 1.5rem;
+}
+.section-breakdown {
+margin: 2rem 0;
+text-align: left;
+}
+.section-breakdown h3 {
+margin-bottom: 1rem;
+font-size: 1.1rem;
+}
+.breakdown-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0.75rem 0;
+border-bottom: 1px solid var(--border);
+font-size: 0.95rem;
+}
+.breakdown-bar-container {
+flex: 1;
+margin: 0 1.5rem;
+background: var(--border);
+height: 8px;
+border-radius: 4px;
+overflow: hidden;
+}
+.breakdown-bar {
+height: 100%;
+background: var(--primary-dark);
+border-radius: 4px;
+}
+/* Mistake Review View */
+.mistake-card {
+background: var(--white);
+border: 1px solid var(--border);
+border-radius: var(--radius);
+padding: 1.5rem;
+margin-bottom: 1rem;
+text-align: left;
+box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.mistake-card h4 {
+font-size: 1.1rem;
+margin-bottom: 0.75rem;
+}
+.mistake-meta {
+font-size: 0.85rem;
+color: var(--text-muted);
+margin-bottom: 0.5rem;
+}
+.answer-comparison {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+margin: 1rem 0;
+font-size: 0.9rem;
+}
+.user-wrong {
+background: var(--incorrect-bg);
+color: #991B1B;
+padding: 0.5rem 0.75rem;
+border-radius: 6px;
+}
+.system-correct {
+background: var(--correct-bg);
+color: #065F46;
+padding: 0.5rem 0.75rem;
+border-radius: 6px;
+}
+/* Modal Dialog */
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.5);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.2s ease;
+}
+.modal-overlay.active {
+opacity: 1;
+pointer-events: auto;
+}
+.modal-card {
+background: var(--white);
+padding: 2rem;
+border-radius: var(--radius);
+max-width: 450px;
+width: 90%;
+box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+text-align: center;
+}
+.modal-card h3 {
+margin-bottom: 1rem;
+}
+.modal-card p {
+color: var(--text-muted);
+margin-bottom: 1.5rem;
+font-size: 0.95rem;
+}
+.modal-actions {
+display: flex;
+gap: 1rem;
+justify-content: center;
+}
+@media (max-width: 768px) {
+header {
+padding: 1rem;
+}
+.dashboard-hero {
+padding: 1.5rem;
+}
+.dashboard-hero h1 {
+font-size: 1.5rem;
+}
+.answer-comparison {
+grid-template-columns: 1fr;
+}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="header-title" onclick="app.showDashboard()" style="cursor: pointer;">
+<span>Gerunds & Infinitives</span>
+<span class="header-badge">B1–B2 Master</span>
+</div>
+<div id="header-nav-status" style="font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">
+100 Exercises
+</div>
+</header>
+<main>
+<!-- HOME DASHBOARD VIEW -->
+<div id="view-dashboard" class="view active">
+<div class="dashboard-hero">
+<h1>Gerunds and Infinitives</h1>
+<p>100 Interactive Grammar Exercises – B1–B2 Level</p>
+<div class="action-buttons">
+<button class="btn" onclick="app.startPracticeMode()">
+Practice Mode
+</button>
+<button class="btn btn-secondary" onclick="app.startTestMode()">
+Test Mode (Exam)
+</button>
+<button class="btn btn-secondary" id="btn-review-mistakes" onclick="app.startMistakeReview()" style="display: none;">
+Review Mistakes (<span id="mistake-count-badge">0</span>)
+</button>
+</div>
+</div>
+<div class="stats-grid">
+<div class="stat-card">
+<h3 id="stat-completed">0 / 100</h3>
+<p>Questions Answered</p>
+</div>
+<div class="stat-card">
+<h3 id="stat-best-score">—</h3>
+<p>Best Test Score</p>
+</div>
+<div class="stat-card">
+<h3 id="stat-accuracy">0%</h3>
+<p>Overall Accuracy</p>
+</div>
+</div>
+<div style="text-align: center; margin-bottom: 1.5rem;">
+<button class="btn btn-danger" style="font-size: 0.85rem; padding: 0.5rem 1rem;" onclick="app.confirmResetProgress()">
+Reset All Saved Progress
+</button>
+</div>
+<div class="grammar-overview">
+<h2>Grammar Topic Overview</h2>
+<div class="grammar-grid">
+<div class="grammar-item">
+<h4>1. Gerunds (-ing)</h4>
+<p>Used as subjects, after specific verbs (enjoy, avoid, suggest), prepositions, and phrasal verbs.</p>
+</div>
+<div class="grammar-item">
+<h4>2. To-Infinitives</h4>
+<p>Used after specific verbs (decide, hope, afford), adjectives, and to express purpose.</p>
+</div>
+<div class="grammar-item">
+<h4>3. Meaning Changes</h4>
+<p>Verbs like remember, stop, try, regret, and mean change their meaning significantly when followed by gerunds vs. infinitives.</p>
+</div>
+<div class="grammar-item">
+<h4>4. Bare Infinitives</h4>
+<p>Used after modal verbs, causative verbs (make, let), and perception verbs (see, hear).</p>
+</div>
+</div>
+</div>
+</div>
+<!-- QUIZ VIEW (Practice & Test) -->
+<div id="view-quiz" class="view">
+<div class="quiz-container">
+<div class="quiz-header">
+<div>
+<span id="quiz-section-title" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 0.25rem;"></span>
+<span class="quiz-progress-text" id="quiz-progress-label">Question 1 of 100</span>
+</div>
+<div class="quiz-actions-top">
+<button class="flag-btn" id="btn-flag" onclick="app.toggleFlagCurrent()">
+<span id="flag-icon">☆</span> Flag
+</button>
+<button class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;" onclick="app.showDashboard()">
+Exit
+</button>
+</div>
+</div>
+<div class="keyboard-hint">
+<span>Keyboard: <b>A</b>, <b>B</b>, <b>C</b>, <b>D</b> to select</span>
+<span><b>Enter</b> to submit</span>
+<span><b>← / →</b> to navigate</span>
+<span><b>Home / End</b> to jump</span>
+</div>
+<div class="question-box">
+<h2 id="question-text">Loading question...</h2>
+<div class="options-list" id="options-container">
+<!-- Options generated dynamically -->
+</div>
+</div>
+<div class="explanation-box" id="explanation-box">
+<h4 id="explanation-title">Explanation</h4>
+<p id="explanation-en"></p>
+<p class="vi-trans" id="explanation-vi"></p>
+</div>
+<div class="quiz-footer">
+<button class="btn btn-secondary" id="btn-prev" onclick="app.prevQuestion()">
+← Previous
+</button>
+<div id="quiz-submit-area">
+<button class="btn" id="btn-submit" onclick="app.submitCurrentAnswer()">
+Submit Answer
+</button>
+</div>
+<button class="btn btn-secondary" id="btn-next" onclick="app.nextQuestion()">
+Next →
+</button>
+</div>
+</div>
+<div class="navigator-container">
+<h3>
+<span>Question Navigator</span>
+<span id="nav-mode-indicator" style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;"></span>
+</h3>
+<div class="nav-grid" id="nav-grid">
+<!-- Nav cells generated dynamically -->
+</div>
+</div>
+</div>
+<!-- RESULTS VIEW -->
+<div id="view-results" class="view">
+<div class="results-container">
+<h2 style="margin-bottom: 0.5rem;">Test Results</h2>
+<p style="color: var(--text-muted); margin-bottom: 2rem;" id="results-date">Completed on Today</p>
+<div class="results-score-circle">
+<h2 id="result-score-num">85</h2>
+<span>/ 100 Points</span>
+</div>
+<div id="performance-badge-container">
+<span class="performance-badge" id="performance-badge-text">Very Good</span>
+</div>
+<div class="stats-grid" style="margin-bottom: 2rem;">
+<div class="stat-card">
+<h3 id="res-correct">0</h3>
+<p>Correct</p>
+</div>
+<div class="stat-card">
+<h3 id="res-incorrect">0</h3>
+<p>Incorrect</p>
+</div>
+<div class="stat-card">
+<h3 id="res-unanswered">0</h3>
+<p>Unanswered</p>
+</div>
+</div>
+<div class="action-buttons" style="margin-bottom: 2rem;">
+<button class="btn" onclick="app.startMistakeReview()" id="btn-results-review-mistakes">
+Review Mistakes
+</button>
+<button class="btn btn-secondary" onclick="app.startTestMode()">
+Retake Test
+</button>
+<button class="btn btn-secondary" onclick="app.showDashboard()">
+Dashboard
+</button>
+</div>
+<div class="section-breakdown">
+<h3>Performance by Section</h3>
+<div id="section-breakdown-list">
+<!-- Breakdown rows -->
+</div>
+</div>
+</div>
+</div>
+<!-- MISTAKE REVIEW VIEW -->
+<div id="view-mistakes" class="view">
+<div class="quiz-container" style="text-align: center;">
+<div class="quiz-header" style="justify-content: space-between;">
+<h2>Mistake Review</h2>
+<button class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;" onclick="app.showDashboard()">
+Back to Dashboard
+</button>
+</div>
+<div id="mistakes-list-container" style="text-align: left;">
+<!-- Mistake cards generated dynamically -->
+</div>
+</div>
+</div>
+</main>
+<!-- Confirmation Modal -->
+<div class="modal-overlay" id="confirm-modal">
+<div class="modal-card">
+<h3 id="modal-title">Confirmation</h3>
+<p id="modal-desc">Are you sure you want to proceed?</p>
+<div class="modal-actions">
+<button class="btn btn-secondary" onclick="app.closeModal()">Cancel</button>
+<button class="btn btn-danger" id="modal-confirm-btn" onclick="app.executeModalAction()">Confirm</button>
+</div>
+</div>
+</div>
+<script>
+// Full 100 Questions Database with metadata and explanations
+const questionsData = [
+// PART 1 (1-15)
+{ id: 1, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "I really enjoy _____ English podcasts in my free time.", options: ["listen", "listening to", "to listen", "listened to"], correct: 1, explanationEn: "Enjoy + V-ing: enjoy listening to = thích nghe.", explanationVi: "Cấu trúc enjoy đi với danh động từ (V-ing)." },
+{ id: 2, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "She decided _____ abroad after graduating from university.", options: ["studying", "study", "to study", "studied"], correct: 2, explanationEn: "Decide + to V: quyết định làm gì.", explanationVi: "Sau động từ decide dùng động từ nguyên mẫu có to." },
+{ id: 3, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "They avoided _____ about the problem during dinner.", options: ["talking", "to talk", "talk", "talked"], correct: 0, explanationEn: "Avoid + V-ing: tránh làm gì.", explanationVi: "Sau avoid ta dùng danh động từ (V-ing)." },
+{ id: 4, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "My brother hopes _____ a scholarship this year.", options: ["getting", "get", "got", "to get"], correct: 3, explanationEn: "Hope + to V: hy vọng làm gì.", explanationVi: "Sau hope dùng động từ nguyên mẫu có to." },
+{ id: 5, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "Would you mind _____ the window?", options: ["to close", "closing", "close", "closed"], correct: 1, explanationEn: "Would you mind + V-ing?: bạn có phiền làm gì không?", explanationVi: "Sau would you mind luôn dùng V-ing." },
+{ id: 6, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "The teacher suggested _____ more vocabulary every day.", options: ["to learn", "learn", "learning", "learned"], correct: 2, explanationEn: "Suggest + V-ing: đề xuất làm gì.", explanationVi: "Sau suggest dùng V-ing." },
+{ id: 7, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "We agreed _____ at the library at 8 a.m.", options: ["meeting", "meet", "met", "to meet"], correct: 3, explanationEn: "Agree + to V: đồng ý làm gì.", explanationVi: "Sau agree dùng động từ nguyên mẫu có to." },
+{ id: 8, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "He admitted _____ the confidential information.", options: ["sharing", "to share", "share", "shared"], correct: 0, explanationEn: "Admit + V-ing: thừa nhận đã làm gì.", explanationVi: "Sau admit dùng V-ing." },
+{ id: 9, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "I can’t afford _____ a new laptop at the moment.", options: ["buying", "buy", "to buy", "bought"], correct: 2, explanationEn: "Afford + to V: có đủ khả năng tài chính để làm gì.", explanationVi: "Sau afford dùng động từ nguyên mẫu có to." },
+{ id: 10, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "She keeps _____ the same mistakes in her writing.", options: ["make", "making", "to make", "made"], correct: 1, explanationEn: "Keep + V-ing: tiếp tục làm gì.", explanationVi: "Sau keep dùng V-ing." },
+{ id: 11, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "They refused _____ responsibility for the accident.", options: ["accepting", "accept", "accepted", "to accept"], correct: 3, explanationEn: "Refuse + to V: từ chối làm gì.", explanationVi: "Sau refuse dùng động từ nguyên mẫu có to." },
+{ id: 12, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "Have you finished _____ your assignment yet?", options: ["doing", "to do", "do", "done"], correct: 0, explanationEn: "Finish + V-ing: hoàn thành việc gì.", explanationVi: "Sau finish dùng V-ing." },
+{ id: 13, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "He managed _____ the difficult examination.", options: ["passing", "pass", "to pass", "passed"], correct: 2, explanationEn: "Manage + to V: xoay xở thành công để làm gì.", explanationVi: "Sau manage dùng động từ nguyên mẫu có to." },
+{ id: 14, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "I miss _____ with my childhood friends.", options: ["to play", "playing", "play", "played"], correct: 1, explanationEn: "Miss + V-ing: nhớ, cảm thấy tiếc vì không còn được làm gì.", explanationVi: "Sau miss dùng V-ing." },
+{ id: 15, section: "PART 1 – Multiple Choice: Gerund or Infinitive", text: "She promised _____ me as soon as she arrived.", options: ["calling", "call", "called", "to call"], correct: 3, explanationEn: "Promise + to V: hứa làm gì.", explanationVi: "Sau promise dùng động từ nguyên mẫu có to." },
+// PART 2 (16-25)
+{ id: 16, section: "PART 2 – Complete the Sentences", text: "My parents encourage me _____ harder at university.", options: ["studying", "study", "to study", "studied"], correct: 2, explanationEn: "Encourage + object + to V: khuyến khích ai làm gì.", explanationVi: "Cấu trúc encourage + O + to V." },
+{ id: 17, section: "PART 2 – Complete the Sentences", text: "He denied _____ the money from his colleague.", options: ["stealing", "to steal", "steal", "stole"], correct: 0, explanationEn: "Deny + V-ing: phủ nhận việc đã làm gì.", explanationVi: "Sau deny dùng V-ing." },
+{ id: 18, section: "PART 2 – Complete the Sentences", text: "I would like _____ my pronunciation before the exam.", options: ["improving", "improve", "improved", "to improve"], correct: 3, explanationEn: "Would like + to V: muốn làm gì.", explanationVi: "Sau would like dùng động từ nguyên mẫu có to." },
+{ id: 19, section: "PART 2 – Complete the Sentences", text: "She practises _____ English every evening.", options: ["to speak", "speaking", "speak", "spoke"], correct: 1, explanationEn: "Practise + V-ing: luyện tập làm gì.", explanationVi: "Sau practise dùng V-ing." },
+{ id: 20, section: "PART 2 – Complete the Sentences", text: "They expect _____ the results next Monday.", options: ["receiving", "receive", "to receive", "received"], correct: 2, explanationEn: "Expect + to V: mong đợi làm gì.", explanationVi: "Sau expect dùng động từ nguyên mẫu có to." },
+{ id: 21, section: "PART 2 – Complete the Sentences", text: "He considered _____ a different university.", options: ["attending", "to attend", "attend", "attended"], correct: 0, explanationEn: "Consider + V-ing: cân nhắc việc làm gì.", explanationVi: "Sau consider dùng V-ing." },
+{ id: 22, section: "PART 2 – Complete the Sentences", text: "I can’t imagine _____ without the internet.", options: ["to live", "live", "lived", "living"], correct: 3, explanationEn: "Imagine + V-ing: tưởng tượng việc làm gì.", explanationVi: "Sau imagine dùng V-ing." },
+{ id: 23, section: "PART 2 – Complete the Sentences", text: "The company offered _____ him a permanent position.", options: ["giving", "to give", "give", "gave"], correct: 1, explanationEn: "Offer + to V: đề nghị làm gì.", explanationVi: "Sau offer dùng động từ nguyên mẫu có to." },
+{ id: 24, section: "PART 2 – Complete the Sentences", text: "She postponed _____ her driving test.", options: ["taking", "to take", "take", "took"], correct: 0, explanationEn: "Postpone + V-ing: trì hoãn việc gì.", explanationVi: "Sau postpone dùng V-ing." },
+{ id: 25, section: "PART 2 – Complete the Sentences", text: "We arranged _____ our teacher after class.", options: ["meeting", "meet", "to meet", "met"], correct: 2, explanationEn: "Arrange + to V: sắp xếp để làm gì.", explanationVi: "Sau arrange dùng động từ nguyên mẫu có to." },
+// PART 3 (26-35)
+{ id: 26, section: "PART 3 – Verbs Followed by Gerunds", text: "She dislikes _____ in crowded places.", options: ["to shop", "shopping", "shop", "shopped"], correct: 1, explanationEn: "Dislike + V-ing: không thích làm gì.", explanationVi: "Sau dislike dùng V-ing." },
+{ id: 27, section: "PART 3 – Verbs Followed by Gerunds", text: "The manager recommended _____ the instructions carefully.", options: ["reading", "to read", "read", "reads"], correct: 0, explanationEn: "Recommend + V-ing: khuyên, đề xuất làm gì.", explanationVi: "Sau recommend dùng V-ing." },
+{ id: 28, section: "PART 3 – Verbs Followed by Gerunds", text: "He gave up _____ because it was affecting his health.", options: ["to smoke", "smoke", "smoking", "smoked"], correct: 2, explanationEn: "Give up + V-ing: từ bỏ thói quen hoặc hoạt động.", explanationVi: "Sau give up dùng V-ing." },
+{ id: 29, section: "PART 3 – Verbs Followed by Gerunds", text: "I appreciate _____ me with my homework.", options: ["to help", "help", "helped", "helping"], correct: 3, explanationEn: "Appreciate + V-ing: trân trọng việc ai đó làm gì.", explanationVi: "Sau appreciate dùng V-ing." },
+{ id: 30, section: "PART 3 – Verbs Followed by Gerunds", text: "She postponed _____ her decision until tomorrow.", options: ["making", "to make", "make", "made"], correct: 0, explanationEn: "Postpone + V-ing: trì hoãn làm gì.", explanationVi: "Sau postpone dùng V-ing." },
+{ id: 31, section: "PART 3 – Verbs Followed by Gerunds", text: "They risked _____ everything by investing in that business.", options: ["to lose", "losing", "lose", "lost"], correct: 1, explanationEn: "Risk + V-ing: mạo hiểm làm gì.", explanationVi: "Sau risk dùng V-ing." },
+{ id: 32, section: "PART 3 – Verbs Followed by Gerunds", text: "He mentioned _____ a new job recently.", options: ["to find", "find", "finding", "found"], correct: 2, explanationEn: "Mention + V-ing: đề cập đến việc làm gì.", explanationVi: "Sau mention dùng V-ing." },
+{ id: 33, section: "PART 3 – Verbs Followed by Gerunds", text: "I strongly recommend _____ this book before the exam.", options: ["to read", "read", "reads", "reading"], correct: 3, explanationEn: "Recommend + V-ing: khuyến nghị làm gì.", explanationVi: "Sau recommend dùng V-ing." },
+{ id: 34, section: "PART 3 – Verbs Followed by Gerunds", text: "She can’t help _____ whenever she watches that film.", options: ["crying", "to cry", "cry", "cried"], correct: 0, explanationEn: "Can’t help + V-ing: không thể nhịn được việc gì.", explanationVi: "Cấu trúc can't help đi với V-ing." },
+{ id: 35, section: "PART 3 – Verbs Followed by Gerunds", text: "We are considering _____ a language course next semester.", options: ["to take", "taking", "take", "took"], correct: 1, explanationEn: "Consider + V-ing: cân nhắc làm gì.", explanationVi: "Sau consider dùng V-ing." },
+// PART 4 (36-45)
+{ id: 36, section: "PART 4 – Verbs Followed by Infinitives", text: "He chose _____ at home instead of going out.", options: ["staying", "stay", "to stay", "stayed"], correct: 2, explanationEn: "Choose + to V: lựa chọn làm gì.", explanationVi: "Sau choose dùng động từ nguyên mẫu có to." },
+{ id: 37, section: "PART 4 – Verbs Followed by Infinitives", text: "She tends _____ nervous before important examinations.", options: ["getting", "get", "got", "to get"], correct: 3, explanationEn: "Tend + to V: có xu hướng làm gì.", explanationVi: "Sau tend dùng động từ nguyên mẫu có to." },
+{ id: 38, section: "PART 4 – Verbs Followed by Infinitives", text: "They struggled _____ the instructions.", options: ["understanding", "to understand", "understand", "understood"], correct: 1, explanationEn: "Struggle + to V: chật vật để làm gì.", explanationVi: "Sau struggle dùng động từ nguyên mẫu có to." },
+{ id: 39, section: "PART 4 – Verbs Followed by Infinitives", text: "I persuaded my friend _____ the competition.", options: ["joining", "join", "to join", "joined"], correct: 2, explanationEn: "Persuade + object + to V: thuyết phục ai làm gì.", explanationVi: "Cấu trúc persuade + O + to V." },
+{ id: 40, section: "PART 4 – Verbs Followed by Infinitives", text: "He failed _____ the deadline.", options: ["to meet", "meeting", "meet", "met"], correct: 0, explanationEn: "Fail + to V: không thực hiện được việc gì.", explanationVi: "Sau fail dùng động từ nguyên mẫu có to." },
+{ id: 41, section: "PART 4 – Verbs Followed by Infinitives", text: "She volunteered _____ the elderly people in her community.", options: ["helping", "help", "helped", "to help"], correct: 3, explanationEn: "Volunteer + to V: tình nguyện làm gì.", explanationVi: "Sau volunteer dùng động từ nguyên mẫu có to." },
+{ id: 42, section: "PART 4 – Verbs Followed by Infinitives", text: "We hope _____ the project by the end of this month.", options: ["completing", "to complete", "complete", "completed"], correct: 1, explanationEn: "Hope + to V: hy vọng làm gì.", explanationVi: "Sau hope dùng động từ nguyên mẫu có to." },
+{ id: 43, section: "PART 4 – Verbs Followed by Infinitives", text: "He appears _____ interested in learning Chinese.", options: ["being", "be", "to be", "been"], correct: 2, explanationEn: "Appear + to V: có vẻ như.", explanationVi: "Sau appear dùng động từ nguyên mẫu có to." },
+{ id: 44, section: "PART 4 – Verbs Followed by Infinitives", text: "The students were encouraged _____ questions during the lesson.", options: ["to ask", "asking", "ask", "asked"], correct: 0, explanationEn: "Encourage + object + to V ở thể bị động: được khuyến khích làm gì.", explanationVi: "Dạng bị động của encourage + O + to V." },
+{ id: 45, section: "PART 4 – Verbs Followed by Infinitives", text: "I would prefer _____ at home tonight.", options: ["staying", "stay", "stayed", "to stay"], correct: 3, explanationEn: "Would prefer + to V: thích làm gì hơn.", explanationVi: "Sau would prefer dùng động từ nguyên mẫu có to." },
+// PART 5 (46-55)
+{ id: 46, section: "PART 5 – Preposition + Gerund", text: "She is interested in _____ a career in education.", options: ["pursue", "pursuing", "to pursue", "pursued"], correct: 1, explanationEn: "Interested in + V-ing: quan tâm đến việc làm gì.", explanationVi: "Sau giới từ in dùng V-ing." },
+{ id: 47, section: "PART 5 – Preposition + Gerund", text: "I’m looking forward to _____ you again.", options: ["seeing", "see", "to see", "saw"], correct: 0, explanationEn: "Look forward to + V-ing: mong chờ điều gì. To ở đây là giới từ.", explanationVi: "Sau cụm giới từ look forward to dùng V-ing." },
+{ id: 48, section: "PART 5 – Preposition + Gerund", text: "He left the room without _____ goodbye.", options: ["say", "to say", "saying", "said"], correct: 2, explanationEn: "Without + V-ing: mà không làm gì.", explanationVi: "Sau giới từ without dùng V-ing." },
+{ id: 49, section: "PART 5 – Preposition + Gerund", text: "She is good at _____ difficult problems.", options: ["solve", "solving", "to solve", "solved"], correct: 1, explanationEn: "Good at + V-ing: giỏi làm gì.", explanationVi: "Sau giới từ at dùng V-ing." },
+{ id: 50, section: "PART 5 – Preposition + Gerund", text: "They apologized for _____ late to the meeting.", options: ["being", "be", "to be", "been"], correct: 0, explanationEn: "Apologize for + V-ing: xin lỗi vì đã làm gì.", explanationVi: "Sau giới từ for dùng V-ing." },
+{ id: 51, section: "PART 5 – Preposition + Gerund", text: "Instead of _____ television, I decided to read a book.", options: ["watch", "to watch", "watching", "watched"], correct: 2, explanationEn: "Instead of + V-ing: thay vì làm gì.", explanationVi: "Sau cụm giới từ instead of dùng V-ing." },
+{ id: 52, section: "PART 5 – Preposition + Gerund", text: "He succeeded in _____ a place at his preferred university.", options: ["securing", "secure", "to secure", "secured"], correct: 0, explanationEn: "Succeed in + V-ing: thành công trong việc gì.", explanationVi: "Sau giới từ in dùng V-ing." },
+{ id: 53, section: "PART 5 – Preposition + Gerund", text: "I’m tired of _____ the same questions repeatedly.", options: ["answer", "answering", "to answer", "answered"], correct: 1, explanationEn: "Tired of + V-ing: chán việc gì.", explanationVi: "Sau giới từ of dùng V-ing." },
+{ id: 54, section: "PART 5 – Preposition + Gerund", text: "She left early because she was afraid of _____ the last bus.", options: ["miss", "to miss", "missing", "missed"], correct: 2, explanationEn: "Afraid of + V-ing: sợ việc gì.", explanationVi: "Sau giới từ of dùng V-ing." },
+{ id: 55, section: "PART 5 – Preposition + Gerund", text: "Before _____ a decision, you should consider all the possibilities.", options: ["make", "making", "to make", "made"], correct: 1, explanationEn: "Before + V-ing: trước khi làm gì.", explanationVi: "Sau giới từ before dùng V-ing." },
+// PART 6 (56-70)
+{ id: 56, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "I remember _____ him at a conference several years ago.", options: ["to meet", "meeting", "meet", "met"], correct: 1, explanationEn: "Remember + V-ing: nhớ lại việc đã xảy ra trong quá khứ.", explanationVi: "Nhớ đã làm gì trong quá khứ dùng V-ing." },
+{ id: 57, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "Remember _____ the lights before you leave.", options: ["turning off", "turn off", "to turn off", "turned off"], correct: 2, explanationEn: "Remember + to V: nhớ phải thực hiện một việc.", explanationVi: "Nhớ phải làm gì trong tương lai dùng to V." },
+{ id: 58, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "He stopped _____ because he wanted to improve his health.", options: ["smoking", "to smoke", "smoke", "smoked"], correct: 0, explanationEn: "Stop + V-ing: dừng hẳn một hoạt động.", explanationVi: "Bỏ hẳn việc hút thuốc dùng V-ing." },
+{ id: 59, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "We stopped _____ some food on our way home.", options: ["buying", "buy", "bought", "to buy"], correct: 3, explanationEn: "Stop + to V: dừng một hoạt động khác để làm việc gì.", explanationVi: "Dừng lại để mua đồ ăn dùng to V." },
+{ id: 60, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "I tried _____ the door, but it was locked.", options: ["opening", "to open", "open", "opened"], correct: 1, explanationEn: "Try + to V: cố gắng thực hiện điều gì.", explanationVi: "Cố gắng mở cửa dùng to V." },
+{ id: 61, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "If the computer isn’t working, try _____ it again.", options: ["restarting", "to restart", "restart", "restarted"], correct: 0, explanationEn: "Try + V-ing: thử một phương pháp để xem có hiệu quả không.", explanationVi: "Thử khởi động lại máy dùng V-ing." },
+{ id: 62, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "She regrets _____ such a rude comment yesterday.", options: ["to make", "make", "making", "made"], correct: 2, explanationEn: "Regret + V-ing: hối hận vì đã làm gì.", explanationVi: "Hối hận vì đã nói lời thô lỗ dùng V-ing." },
+{ id: 63, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "We regret _____ you that your application has been unsuccessful.", options: ["informing", "to inform", "inform", "informed"], correct: 1, explanationEn: "Regret + to V: lấy làm tiếc khi phải thông báo điều gì.", explanationVi: "Rất tiếc phải thông báo điều gì dùng to V." },
+{ id: 64, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "I forgot _____ my assignment, so I received a lower mark.", options: ["submitting", "submit", "submitted", "to submit"], correct: 3, explanationEn: "Forget + to V: quên thực hiện một việc cần làm.", explanationVi: "Quên nộp bài tập dùng to V." },
+{ id: 65, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "I’ll never forget _____ my first English teacher.", options: ["meeting", "to meet", "meet", "met"], correct: 0, explanationEn: "Forget + V-ing: quên một trải nghiệm đã xảy ra.", explanationVi: "Không quên đã gặp cô giáo đầu tiên dùng V-ing." },
+{ id: 66, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "Learning a foreign language means _____ a lot of time and effort.", options: ["to invest", "invest", "investing", "invested"], correct: 2, explanationEn: "Mean + V-ing: đồng nghĩa với việc bao hàm hoặc đòi hỏi điều gì.", explanationVi: "Đòi hỏi đầu tư thời gian dùng V-ing." },
+{ id: 67, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "I didn’t mean _____ you. I was just trying to explain the situation.", options: ["upsetting", "to upset", "upset", "upsetted"], correct: 1, explanationEn: "Mean + to V: có ý định làm gì.", explanationVi: "Có ý định làm bạn buồn dùng to V." },
+{ id: 68, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "After discussing the basic principles, the lecturer went on _____ the practical applications.", options: ["explaining", "explain", "to explain", "explained"], correct: 2, explanationEn: "Go on + to V: chuyển sang thực hiện hoặc nói về việc tiếp theo.", explanationVi: "Chuyển sang phần tiếp theo dùng to V." },
+{ id: 69, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "She went on _____ even though everyone had asked her to stop.", options: ["talking", "to talk", "talk", "talked"], correct: 0, explanationEn: "Go on + V-ing: tiếp tục hoạt động đang diễn ra.", explanationVi: "Tiếp tục nói chuyện dùng V-ing." },
+{ id: 70, section: "PART 6 – Gerund or Infinitive: Meaning Changes", text: "This report needs _____ before it is submitted.", options: ["to revise", "revising", "revise", "revised"], correct: 1, explanationEn: "Need + V-ing: mang nghĩa bị động, cần được sửa đổi.", explanationVi: "Cần được sửa đổi (nghĩa bị động) dùng V-ing." },
+// PART 7 (71-80)
+{ id: 71, section: "PART 7 – Verb + Object + Infinitive", text: "My teacher advised me _____ more regularly.", options: ["studying", "study", "to study", "studied"], correct: 2, explanationEn: "Advise + object + to V.", explanationVi: "Cấu trúc advise + O + to V." },
+{ id: 72, section: "PART 7 – Verb + Object + Infinitive", text: "The police warned the driver _____ more carefully.", options: ["driving", "drive", "drove", "to drive"], correct: 3, explanationEn: "Warn + object + to V.", explanationVi: "Cấu trúc warn + O + to V." },
+{ id: 73, section: "PART 7 – Verb + Object + Infinitive", text: "My parents don’t allow me _____ out too late.", options: ["staying", "to stay", "stay", "stayed"], correct: 1, explanationEn: "Allow + object + to V.", explanationVi: "Cấu trúc allow + O + to V." },
+{ id: 74, section: "PART 7 – Verb + Object + Infinitive", text: "She reminded her brother _____ his homework.", options: ["to finish", "finishing", "finish", "finished"], correct: 0, explanationEn: "Remind + object + to V.", explanationVi: "Cấu trúc remind + O + to V." },
+{ id: 75, section: "PART 7 – Verb + Object + Infinitive", text: "I encouraged my classmates _____ for the scholarship.", options: ["applying", "apply", "to apply", "applied"], correct: 2, explanationEn: "Encourage + object + to V.", explanationVi: "Cấu trúc encourage + O + to V." },
+{ id: 76, section: "PART 7 – Verb + Object + Infinitive", text: "The manager instructed the employees _____ the new safety rules.", options: ["following", "to follow", "follow", "followed"], correct: 1, explanationEn: "Instruct + object + to V.", explanationVi: "Cấu trúc instruct + O + to V." },
+{ id: 77, section: "PART 7 – Verb + Object + Infinitive", text: "Nobody expected him _____ the competition.", options: ["winning", "win", "won", "to win"], correct: 3, explanationEn: "Expect + object + to V.", explanationVi: "Cấu trúc expect + O + to V." },
+{ id: 78, section: "PART 7 – Verb + Object + Infinitive", text: "She persuaded her parents _____ her study abroad.", options: ["allowing", "allow", "to allow", "allowed"], correct: 2, explanationEn: "Persuade + object + to V.", explanationVi: "Cấu trúc persuade + O + to V." },
+{ id: 79, section: "PART 7 – Verb + Object + Infinitive", text: "The doctor advised him _____ more water.", options: ["drinking", "to drink", "drink", "drank"], correct: 1, explanationEn: "Advise + object + to V.", explanationVi: "Cấu trúc advise + O + to V." },
+{ id: 80, section: "PART 7 – Verb + Object + Infinitive", text: "We invited our neighbours _____ us for dinner.", options: ["joining", "join", "joined", "to join"], correct: 3, explanationEn: "Invite + object + to V.", explanationVi: "Cấu trúc invite + O + to V." },
+// PART 8 (81-85)
+{ id: 81, section: "PART 8 – Bare Infinitive", text: "My parents made me _____ my bedroom before going out.", options: ["clean", "to clean", "cleaning", "cleaned"], correct: 0, explanationEn: "Make + object + bare infinitive: bắt ai làm gì.", explanationVi: "Sau make + O dùng động từ nguyên mẫu không to." },
+{ id: 82, section: "PART 8 – Bare Infinitive", text: "The teacher let us _____ early after the examination.", options: ["to leave", "leaving", "leave", "left"], correct: 2, explanationEn: "Let + object + bare infinitive: cho phép ai làm gì.", explanationVi: "Sau let + O dùng động từ nguyên mẫu không to." },
+{ id: 83, section: "PART 8 – Bare Infinitive", text: "I saw him _____ the building and walk towards his car.", options: ["to enter", "enter", "entering", "entered"], correct: 1, explanationEn: "See + object + bare infinitive: chứng kiến toàn bộ hành động.", explanationVi: "Chứng kiến toàn bộ sự việc dùng động từ nguyên mẫu không to." },
+{ id: 84, section: "PART 8 – Bare Infinitive", text: "You had better _____ an umbrella because it might rain.", options: ["taking", "to take", "took", "take"], correct: 3, explanationEn: "Had better + bare infinitive: tốt hơn nên làm gì.", explanationVi: "Sau had better dùng động từ nguyên mẫu không to." },
+{ id: 85, section: "PART 8 – Bare Infinitive", text: "She would rather _____ at home than go to a crowded party.", options: ["stay", "to stay", "staying", "stayed"], correct: 0, explanationEn: "Would rather + bare infinitive: thích làm gì hơn.", explanationVi: "Sau would rather dùng động từ nguyên mẫu không to." },
+// PART 9 (86-90)
+{ id: 86, section: "PART 9 – Error Identification", text: "Identify the error: She enjoys (A) to read English novels (B) before going to bed (C) every night (D).", options: ["to read", "before going", "every night", "No error"], correct: 0, explanationEn: "Enjoy + V-ing, so 'to read' must be changed to 'reading'.", explanationVi: "Sau enjoy dùng V-ing, sửa 'to read' thành 'reading'." },
+{ id: 87, section: "PART 9 – Error Identification", text: "Identify the error: He is looking forward (A) to meet his new classmates (B) at university (C) next week (D).", options: ["to meet", "at university", "next week", "No error"], correct: 0, explanationEn: "Look forward to + V-ing, so 'to meet' must be changed to 'meeting'.", explanationVi: "Sau look forward to dùng V-ing, sửa 'to meet' thành 'meeting'." },
+{ id: 88, section: "PART 9 – Error Identification", text: "Identify the error: My teacher suggested (A) to study harder (B) if I wanted to improve (C) my grades (D).", options: ["to study", "if I wanted", "my grades", "No error"], correct: 0, explanationEn: "Suggest + V-ing, so 'to study' must be changed to 'studying'.", explanationVi: "Sau suggest dùng V-ing, sửa 'to study' thành 'studying'." },
+{ id: 89, section: "PART 9 – Error Identification", text: "Identify the error: The manager made the employees (A) to work overtime (B) to finish the project (C) on time (D).", options: ["to work", "to finish", "on time", "No error"], correct: 0, explanationEn: "Make + object + bare infinitive, so 'to work' must be changed to 'work'.", explanationVi: "Sau make + O dùng nguyên mẫu không to, sửa 'to work' thành 'work'." },
+{ id: 90, section: "PART 9 – Error Identification", text: "Identify the error: She decided (A) applying for the position (B) after discussing it with her family (C) yesterday (D).", options: ["applying", "after discussing", "yesterday", "No error"], correct: 0, explanationEn: "Decide + to V, so 'applying' must be changed to 'to apply'.", explanationVi: "Sau decide dùng to V, sửa 'applying' thành 'to apply'." },
+// PART 10 (91-100)
+{ id: 91, section: "PART 10 – Sentence Transformation", text: "“Why don’t we go swimming?” he suggested.", options: ["He suggested to go swimming.", "He suggested going swimming.", "He suggested go swimming.", "He suggested us going swimming."], correct: 1, explanationEn: "Suggest + V-ing: suggest going swimming.", explanationVi: "Suggest đi với V-ing." },
+{ id: 92, section: "PART 10 – Sentence Transformation", text: "It is difficult for me to understand this theory.", options: ["I have difficulty understanding this theory.", "I have difficulty to understand this theory.", "I have difficult understanding this theory.", "I have difficulty understand this theory."], correct: 0, explanationEn: "Have difficulty + V-ing.", explanationVi: "Cấu trúc have difficulty + V-ing." },
+{ id: 93, section: "PART 10 – Sentence Transformation", text: "She said she was sorry that she had lied to him.", options: ["She regretted to lie to him.", "She regretted lie to him.", "She regretted lying to him.", "She regretted to lying to him."], correct: 2, explanationEn: "Regret + V-ing: hối hận vì đã làm gì trong quá khứ.", explanationVi: "Hối hận vì đã làm gì dùng regret + V-ing." },
+{ id: 94, section: "PART 10 – Sentence Transformation", text: "He stopped working because he wanted to have lunch.", options: ["He stopped having lunch.", "He stopped to have lunch.", "He stopped have lunch.", "He stopped had lunch."], correct: 1, explanationEn: "Stop + to V: dừng làm việc để ăn trưa.", explanationVi: "Dừng để làm việc khác dùng stop + to V." },
+{ id: 95, section: "PART 10 – Sentence Transformation", text: "It is not worth repairing this old computer.", options: ["This old computer isn’t worth repairing.", "This old computer isn’t worth to repair.", "This old computer isn’t worth repair.", "This old computer isn’t worth repaired."], correct: 0, explanationEn: "Be worth + V-ing.", explanationVi: "Cấu trúc be worth + V-ing." },
+{ id: 96, section: "PART 10 – Sentence Transformation", text: "The teacher allowed us to use dictionaries.", options: ["The teacher let us to use dictionaries.", "The teacher let us using dictionaries.", "The teacher let us use dictionaries.", "The teacher let us used dictionaries."], correct: 2, explanationEn: "Let + object + bare infinitive.", explanationVi: "Let + O + nguyên mẫu không to." },
+{ id: 97, section: "PART 10 – Sentence Transformation", text: "I find it difficult to remember new vocabulary.", options: ["I have difficulty to remember new vocabulary.", "I have difficulty remembering new vocabulary.", "I have difficult remembering new vocabulary.", "I have difficulty remember new vocabulary."], correct: 1, explanationEn: "Have difficulty + V-ing.", explanationVi: "Cấu trúc have difficulty + V-ing." },
+{ id: 98, section: "PART 10 – Sentence Transformation", text: "He managed to finish the assignment on time.", options: ["He succeeded in finishing the assignment on time.", "He succeeded to finish the assignment on time.", "He succeeded finish the assignment on time.", "He succeeded in finish the assignment on time."], correct: 0, explanationEn: "Succeed in + V-ing = manage + to V.", explanationVi: "Succeed in + V-ing đồng nghĩa với manage + to V." },
+{ id: 99, section: "PART 10 – Sentence Transformation", text: "She is excited because she will meet her favourite author.", options: ["She is excited about meet her favourite author.", "She is excited meeting her favourite author.", "She is excited to meet her favourite author.", "She is excited meet her favourite author."], correct: 2, explanationEn: "Adjective + to-infinitive: excited to meet.", explanationVi: "Tính từ chỉ cảm xúc đi với to V." },
+{ id: 100, section: "PART 10 – Sentence Transformation", text: "It took him three hours to write the report.", options: ["He spent three hours to write the report.", "He spent three hours writing the report.", "He spent three hours write the report.", "He spent three hours wrote the report."], correct: 1, explanationEn: "Spend + time + V-ing.", explanationVi: "Cấu trúc spend + time + V-ing." }
+];
+// Application State Controller
+class GrammarQuizApp {
+constructor() {
+this.currentView = 'dashboard';
+this.mode = 'practice'; // 'practice' or 'test'
+this.currentIndex = 0;
+this.answers = {}; // qId -> selectedOptionIndex
+this.flagged = {}; // qId -> boolean
+this.testSubmitted = false;
+this.modalAction = null;
+this.loadState();
+this.updateDashboardStats();
+this.initKeyboardListeners();
+}
+loadState() {
+try {
+const saved = localStorage.getItem('gerunds_quiz_state');
+if (saved) {
+const data = JSON.parse(saved);
+this.answers = data.answers || {};
+this.flagged = data.flagged || {};
+}
+} catch(e) {
+console.error("Error loading localStorage", e);
+}
+}
+saveState() {
+try {
+localStorage.setItem('gerunds_quiz_state', JSON.stringify({
+answers: this.answers,
+flagged: this.flagged
+}));
+} catch(e) {
+console.error("Error saving localStorage", e);
+}
+}
+resetProgress() {
+this.answers = {};
+this.flagged = {};
+this.testSubmitted = false;
+this.saveState();
+this.updateDashboardStats();
+this.closeModal();
+}
+confirmResetProgress() {
+document.getElementById('modal-title').innerText = "Reset Progress";
+document.getElementById('modal-desc').innerText = "Are you sure you want to clear all your answers and progress? This cannot be undone.";
+this.modalAction = () => this.resetProgress();
+document.getElementById('confirm-modal').classList.add('active');
+}
+closeModal() {
+document.getElementById('confirm-modal').classList.remove('active');
+this.modalAction = null;
+}
+executeModalAction() {
+if (this.modalAction) {
+this.modalAction();
+}
+}
+switchView(viewId) {
+document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+document.getElementById(viewId).classList.add('active');
+window.scrollTo(0, 0);
+}
+showDashboard() {
+this.currentView = 'dashboard';
+this.updateDashboardStats();
+this.switchView('view-dashboard');
+}
+updateDashboardStats() {
+const answeredCount = Object.keys(this.answers).length;
+document.getElementById('stat-completed').innerText = ⁠${answeredCount} / 100⁠;
+// Calculate overall accuracy
+let correctCount = 0;
+let evaluatedCount = 0;
+for (let id in this.answers) {
+evaluatedCount++;
+const q = questionsData.find(item => item.id == id);
+if (q && this.answers[id] === q.correct) {
+correctCount++;
+}
+}
+const accuracy = evaluatedCount > 0 ? Math.round((correctCount / evaluatedCount) * 100) : 0;
+document.getElementById('stat-accuracy').innerText = ⁠${accuracy}%⁠;
+// Mistake review button visibility
+const mistakes = this.getMistakesList();
+const mistakeBtn = document.getElementById('btn-review-mistakes');
+if (mistakes.length > 0) {
+mistakeBtn.style.display = 'inline-flex';
+document.getElementById('mistake-count-badge').innerText = mistakes.length;
+} else {
+mistakeBtn.style.display = 'none';
+}
+// Best test score from localStorage
+try {
+const testHistory = JSON.parse(localStorage.getItem('gerunds_test_history') || '[]');
+if (testHistory.length > 0) {
+const best = Math.max(...testHistory.map(h => h.score));
+document.getElementById('stat-best-score').innerText = ⁠${best} / 100⁠;
+} else {
+document.getElementById('stat-best-score').innerText = '—';
+}
+} catch(e) {
+document.getElementById('stat-best-score').innerText = '—';
+}
+}
+startPracticeMode() {
+this.mode = 'practice';
+this.currentIndex = 0;
+this.testSubmitted = false;
+this.switchView('view-quiz');
+this.renderQuestion();
+document.getElementById('nav-mode-indicator').innerText = 'Practice Mode (Instant Feedback)';
+}
+startTestMode() {
+this.mode = 'test';
+this.currentIndex = 0;
+this.testSubmitted = false;
+this.switchView('view-quiz');
+this.renderQuestion();
+document.getElementById('nav-mode-indicator').innerText = 'Test Mode (Exam)';
+}
+renderQuestion() {
+const q = questionsData[this.currentIndex];
+document.getElementById('quiz-section-title').innerText = q.section;
+document.getElementById('quiz-progress-label').innerText = ⁠Question ${this.currentIndex + 1} of 100⁠;
+document.getElementById('question-text').innerText = ⁠${this.currentIndex + 1}. ${q.text.replace(/^[0-9]+\.\s*/, '')}⁠;
+// Render options
+const optionsContainer = document.getElementById('options-container');
+optionsContainer.innerHTML = '';
+const keys = ['A', 'B', 'C', 'D'];
+const userSelected = this.answers[q.id];
+q.options.forEach((optText, idx) => {
+const card = document.createElement('div');
+card.className = 'option-card';
+if (userSelected === idx) {
+card.classList.add('selected');
+}
+// In practice mode, if already answered, highlight correct/incorrect
+if (this.mode === 'practice' && userSelected !== undefined) {
+if (idx === q.correct) {
+card.classList.add('correct');
+} else if (userSelected === idx && idx !== q.correct) {
+card.classList.add('incorrect');
+}
+}
+card.innerHTML = ⁠<span class="option-key">${keys[idx]}</span> <span>${optText}</span>⁠;
+card.onclick = () => this.selectOption(idx);
+optionsContainer.appendChild(card);
+});
+// Flag button state
+const flagBtn = document.getElementById('btn-flag');
+const flagIcon = document.getElementById('flag-icon');
+if (this.flagged[q.id]) {
+flagBtn.classList.add('flagged');
+flagIcon.innerText = '★';
+} else {
+flagBtn.classList.remove('flagged');
+flagIcon.innerText = '☆';
+}
+// Explanation box
+const expBox = document.getElementById('explanation-box');
+if (this.mode === 'practice' && userSelected !== undefined) {
+expBox.classList.add('show');
+document.getElementById('explanation-title').innerText = userSelected === q.correct ? 'Correct! ✓' : 'Incorrect ✗';
+document.getElementById('explanation-en').innerText = q.explanationEn;
+document.getElementById('explanation-vi').innerText = q.explanationVi;
+} else {
+expBox.classList.remove('show');
+}
+// Submit button area
+const submitArea = document.getElementById('quiz-submit-area');
+if (this.mode === 'test') {
+submitArea.innerHTML = ⁠<button class="btn" onclick="app.submitTestConfirmation()">Finish & Submit Test</button>⁠;
+} else {
+submitArea.innerHTML = '';
+}
+this.renderNavigatorGrid();
+}
+selectOption(idx) {
+const q = questionsData[this.currentIndex];
+// In test mode or practice mode before submission, update answer
+this.answers[q.id] = idx;
+this.saveState();
+this.renderQuestion();
+}
+submitCurrentAnswer() {
+// Used in practice mode or manual triggers
+this.renderQuestion();
+}
+nextQuestion() {
+if (this.currentIndex < questionsData.length - 1) {
+this.currentIndex++;
+this.renderQuestion();
+}
+}
+prevQuestion() {
+if (this.currentIndex > 0) {
+this.currentIndex--;
+this.renderQuestion();
+}
+}
+goToQuestion(index) {
+if (index >= 0 && index < questionsData.length) {
+this.currentIndex = index;
+this.renderQuestion();
+}
+}
+toggleFlagCurrent() {
+const q = questionsData[this.currentIndex];
+this.flagged[q.id] = !this.flagged[q.id];
+this.saveState();
+this.renderQuestion();
+}
+renderNavigatorGrid() {
+const grid = document.getElementById('nav-grid');
+grid.innerHTML = '';
+questionsData.forEach((q, idx) => {
+const cell = document.createElement('div');
+cell.className = 'nav-cell';
+cell.innerText = idx + 1;
+if (idx === this.currentIndex) {
+cell.classList.add('current');
+} else if (this.answers[q.id] !== undefined) {
+if (this.mode === 'practice') {
+if (this.answers[q.id] === q.correct) {
+cell.classList.add('correct');
+} else {
+cell.classList.add('incorrect');
+}
+} else {
+cell.classList.add('answered');
+}
+}
+if (this.flagged[q.id]) {
+cell.classList.add('flagged');
+}
+cell.onclick = () => this.goToQuestion(idx);
+grid.appendChild(cell);
+});
+}
+submitTestConfirmation() {
+const unanswered = questionsData.filter(q => this.answers[q.id] === undefined).length;
+document.getElementById('modal-title').innerText = "Submit Test";
+document.getElementById('modal-desc').innerText = unanswered > 0
+? ⁠You have ${unanswered} unanswered questions. Are you sure you want to submit?⁠
+: "Are you sure you want to submit your test and view results?";
+this.modalAction = () => {
+this.closeModal();
+this.processTestResults();
+};
+document.getElementById('confirm-modal').classList.add('active');
+}
+processTestResults() {
+let correct = 0;
+let incorrect = 0;
+let unanswered = 0;
+let sectionScores = {};
+questionsData.forEach(q => {
+if (!sectionScores[q.section]) {
+sectionScores[q.section] = { total: 0, correct: 0 };
+}
+sectionScores[q.section].total++;
+const ans = this.answers[q.id];
+if (ans === undefined) {
+unanswered++;
+} else if (ans === q.correct) {
+correct++;
+sectionScores[q.section].correct++;
+} else {
+incorrect++;
+}
+});
+const score = correct; // out of 100
+// Save test history
+try {
+const history = JSON.parse(localStorage.getItem('gerunds_test_history') || '[]');
+history.push({ date: new Date().toLocaleDateString(), score });
+localStorage.setItem('gerunds_test_history', JSON.stringify(history));
+} catch(e) {}
+// Render Results View
+document.getElementById('result-score-num').innerText = score;
+document.getElementById('results-date').innerText = ⁠Completed on ${new Date().toLocaleDateString()}⁠;
+document.getElementById('res-correct').innerText = correct;
+document.getElementById('res-incorrect').innerText = incorrect;
+document.getElementById('res-unanswered').innerText = unanswered;
+// Performance badge
+const badgeText = document.getElementById('performance-badge-text');
+const badgeContainer = document.getElementById('performance-badge-container');
+if (score >= 90) {
+badgeText.innerText = "Excellent";
+badgeContainer.style.color = "#065F46";
+badgeContainer.style.backgroundColor = "#ECFDF5";
+} else if (score >= 80) {
+badgeText.innerText = "Very Good";
+badgeContainer.style.color = "#1E40AF";
+badgeContainer.style.backgroundColor = "#DBEAFE";
+} else if (score >= 70) {
+badgeText.innerText = "Good";
+badgeContainer.style.color = "#92400E";
+badgeContainer.style.backgroundColor = "#FEF3C7";
+} else if (score >= 60) {
+badgeText.innerText = "Satisfactory";
+badgeContainer.style.color = "#374151";
+badgeContainer.style.backgroundColor = "#F3F4F6";
+} else {
+badgeText.innerText = "Needs Improvement";
+badgeContainer.style.color = "#991B1B";
+badgeContainer.style.backgroundColor = "#FEF2F2";
+}
+// Section breakdown list
+const breakdownList = document.getElementById('section-breakdown-list');
+breakdownList.innerHTML = '';
+for (let sec in sectionScores) {
+const data = sectionScores[sec];
+const pct = Math.round((data.correct / data.total) * 100);
+const row = document.createElement('div');
+row.className = 'breakdown-row';
+row.innerHTML = ⁠<span style="width: 220px; font-weight: 500; font-size: 0.85rem;">${sec}</span> <div class="breakdown-bar-container"> <div class="breakdown-bar" style="width: ${pct}%"></div> </div> <span style="font-size: 0.85rem; font-weight: 600; width: 50px; text-align: right;">${data.correct}/${data.total}</span>⁠;
+breakdownList.appendChild(row);
+}
+this.switchView('view-results');
+}
+getMistakesList() {
+let mistakes = [];
+questionsData.forEach(q => {
+const ans = this.answers[q.id];
+if (ans !== undefined && ans !== q.correct) {
+mistakes.push({ q, userAns: ans });
+}
+});
+return mistakes;
+}
+startMistakeReview() {
+const mistakes = this.getMistakesList();
+const container = document.getElementById('mistakes-list-container');
+container.innerHTML = '';
+if (mistakes.length === 0) {
+container.innerHTML = ⁠<p style="text-align: center; color: var(--text-muted); padding: 2rem;">No incorrect answers recorded yet! Great job.</p>⁠;
+} else {
+mistakes.forEach((item, idx) => {
+const { q, userAns } = item;
+const keys = ['A', 'B', 'C', 'D'];
+const card = document.createElement('div');
+card.className = 'mistake-card';
+card.innerHTML = ⁠<div class="mistake-meta">Question ${q.id} • ${q.section}</div> <h4>${idx + 1}. ${q.text}</h4> <div class="answer-comparison"> <div class="user-wrong">Your Answer: <b>${keys[userAns]}. ${q.options[userAns]}</b></div> <div class="system-correct">Correct Answer: <b>${keys[q.correct]}. ${q.options[q.correct]}</b></div> </div> <p style="font-size: 0.9rem; margin-top: 0.75rem;"><b>Explanation:</b> ${q.explanationEn}</p> <p class="vi-trans" style="font-size: 0.875rem; margin-top: 0.25rem;">${q.explanationVi}</p>⁠;
+container.appendChild(card);
+});
+}
+this.switchView('view-mistakes');
+}
+initKeyboardListeners() {
+window.addEventListener('keydown', (e) => {
+// Only active when quiz view is open
+if (!document.getElementById('view-quiz').classList.contains('active')) return;
+// Ignore if typing in input/textarea if any exist
+if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+const key = e.key.toUpperCase();
+if (['A', 'B', 'C', 'D'].includes(key)) {
+const idx = ['A', 'B', 'C', 'D'].indexOf(key);
+if (idx < questionsData[this.currentIndex].options.length) {
+this.selectOption(idx);
+}
+e.preventDefault();
+} else if (e.key === 'Enter') {
+this.submitCurrentAnswer();
+e.preventDefault();
+} else if (e.key === 'ArrowRight') {
+this.nextQuestion();
+e.preventDefault();
+} else if (e.key === 'ArrowLeft') {
+this.prevQuestion();
+e.preventDefault();
+} else if (e.key === 'Home') {
+this.goToQuestion(0);
+e.preventDefault();
+} else if (e.key === 'End') {
+this.goToQuestion(questionsData.length - 1);
+e.preventDefault();
+} else if (e.key === 'Escape') {
+this.closeModal();
+e.preventDefault();
+}
+});
+}
+}
+// Initialize application instance
+const app = new GrammarQuizApp();
+</script>
+</body>
+</html>
